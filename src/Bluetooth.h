@@ -21,6 +21,7 @@ public:
 
     void init(int RX = 10, int TX = 11);
     void begin(long baud = 9600);
+    void start();
 
     void write(const String& data);
     bool available();

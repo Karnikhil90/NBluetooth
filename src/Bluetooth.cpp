@@ -60,6 +60,10 @@ String Bluetooth::readLine() {
     return result;
 }
 
+void Bluetooth::start(){
+    Bluetooth::init(10,11);
+    Bluetooth::begin(9600);
+}
 // ----------------------
 // BTUtil Implementation
 // ----------------------
