@@ -40,20 +40,24 @@ bool Bluetooth::available() {
     while (btSerial && btSerial->available()) {
         char c = btSerial->read();
 
+        // If newline or carriage return, process if buffer has content
         if (c == '\n' || c == '\r') {
             if (buffer.length() > 0) {
-                buffer.trim();
-                lineReady = true;
+                buffer.trim();       // Clean up spaces
+                lineReady = true;    // A full command is ready
                 return true;
             }
         } else {
             buffer += c;
         }
     }
-    return false;
+    return lineReady;
 }
 
+
 String Bluetooth::readLine() {
+    if (!lineReady) return "";
+
     lineReady = false;
     String result = buffer;
     buffer = "";
