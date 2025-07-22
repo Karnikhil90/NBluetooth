@@ -1,6 +1,6 @@
 /**
  * @file LedControl.ino
- * @version 1.0
+ * @version 1.0.1
  * @brief This sketch allows you to control an LED using Bluetooth by sending "on" or "off" commands.
  * 
  * @details
@@ -30,11 +30,11 @@ void loop() {
         cmd.trim();
         cmd.toLowerCase();
 
-        if (cmd == "on") {
+        if (cmd == "on" || cmd == "1") {
             digitalWrite(LED_PIN, HIGH);
             Serial.println("LED ON");
             BT.write("LED ON");
-        } else if (cmd == "off") {
+        } else if (cmd == "off" || cmd == "0") {
             digitalWrite(LED_PIN, LOW);
             Serial.println("LED OFF");
             BT.write("LED OFF");
